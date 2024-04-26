@@ -44,7 +44,6 @@
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
     ".config/kitty/kitty.conf".source = ./dotfiles/kitty/kitty.conf;
-    ".config/nvim".source = ./dotfiles/nvim;
     ".config/fish".source = ./dotfiles/fish;
     ".config/i3".source = ./dotfiles/i3;
     ".tmux.conf".source = ./dotfiles/.tmux.conf;
