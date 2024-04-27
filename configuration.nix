@@ -11,13 +11,17 @@
       ./systemPackages.nix
       ./programs.nix
       ./fonts.nix
+      ./services/xserver.nix
+      ./services/generalServices.nix
+      ./services/pipewire.nix
+      ./virtualisation/docker.nix
       inputs.home-manager.nixosModules.default
     ];
 
     home-manager = {
     	extraSpecialArgs = { inherit inputs;};
 	users = {
-		juliano = import ./home.nix;
+		juliano = import ./home/home.nix;
 	};
 	};
 
@@ -40,8 +44,6 @@
 
   users.defaultUserShell = pkgs.fish;
 
-  services.envfs.enable = true;
-
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
 
@@ -60,36 +62,6 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "br";
-    xkbVariant = "";
-  };
-
-  services.xserver = {
-  	enable = true;
-	desktopManager = {xterm.enable=false;};
-	displayManager = { defaultSession = "none+i3";};
-
-  windowManager.i3 = {
-  	enable = true;
-	extraPackages = with pkgs; [
-		dmenu
-		i3status
-		i3lock
-		];
-#	configFile = ./dotfiles/i3/config;
-		};
-};
-
-  services.picom.enable = true;
-	
-  programs.ssh.askPassword = "";
-
-  programs.dconf.enable = true;
-
-  virtualisation.docker.enable = true;
-
   # Configure console keymap
   console.keyMap = "br-abnt2";
 
@@ -104,18 +76,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-  	enable = true;
-	alsa.enable = true;
-	alsa.support32Bit = true;
-	pulse.enable = true;
-	jack.enable = true;
-	};
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

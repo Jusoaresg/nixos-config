@@ -3,8 +3,11 @@
 {
   environment.systemPackages = with pkgs; [
 
-	xclip
+	#Terminal
 	kitty
+
+	#Shell Utility
+	xclip
 	starship
 	neofetch
 	nix-search-cli
@@ -20,28 +23,31 @@
 	jq
 	ani-cli
 
-	flameshot
+	#Utility
+	flameshot # Screenshot
+	pavucontrol # Audio Control
+	gnome.gnome-disk-utility # Devices control
+	playerctl # Media controller
 
-	pavucontrol
+	feh # Wallpaper
+	imlib2 # Wallpaper utility
 
-	playerctl
-
-	feh
-	imlib2
-
+	#Programming
 	dotnet-sdk_8
 	dotnet-aspnetcore_8
 	python3
 	cargo
-	#nodejs_21
+	nodePackages_latest.nodejs
 	gcc
 	lua
 	go
 
 	gnumake42
 
+	#Browser
 	vivaldi
 
+	#Gtk config
 	lxappearance
   ];
 }

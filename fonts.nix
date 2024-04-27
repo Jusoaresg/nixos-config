@@ -13,6 +13,5 @@
 		weather-icons
 		ubuntu_font_family
 		font-awesome
-		nerdfonts
 	];
 }
