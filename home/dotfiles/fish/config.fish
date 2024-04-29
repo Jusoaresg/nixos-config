@@ -10,3 +10,5 @@ end
 
 if status is-interactive
 end
+
+set -gx PATH ~/.npm-packages/bin $PATH

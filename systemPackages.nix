@@ -38,6 +38,7 @@
 	python3
 	cargo
 	nodePackages_latest.nodejs
+	yarn
 	gcc
 	lua
 	go
