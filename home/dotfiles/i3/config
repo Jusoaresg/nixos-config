@@ -26,6 +26,10 @@ font pango:monospace 8
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
+# Dunst notification 
+exec --no-startup-id dunst
+
+# Start Wallpaper cycle script
 exec --no-startup-id ~/.config/i3/wallpaperCycle.sh
 
 # FlameShot start for screenshots
@@ -52,16 +56,24 @@ exec --no-startup-id nm-applet
 # Print Screen controls
 bindsym Print exec flameshot gui
 
-# Media volume controls
+# Media volume controls 
 bindsym XF86AudioMute exec amixer sset 'Master' toggle
-bindsym XF86AudioLowerVolume exec amixer sset 'Master' 5%-
-bindsym XF86AudioRaiseVolume exec amixer sset 'Master' 5%+
+
+bindsym XF86AudioLowerVolume exec amixer sset 'Master' 5%-; exec ~/.config/i3/volumeNotifier.sh
+bindsym $mod+KP_Subtract exec amixer sset 'Master' 5%-; exec ~/.config/i3/volumeNotifier.sh
+
+bindsym XF86AudioRaiseVolume exec amixer sset 'Master' 5%+; exec ~/.config/i3/volumeNotifier.sh
+bindsym $mod+KP_Add exec amixer sset 'Master' 5%+; exec ~/.config/i3/volumeNotifier.sh
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+# Temperature control (Blue light)
+bindsym $mod+Shift+KP_Subtract exec sct 3700
+bindsym $mod+Shift+KP_Add exec sct
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
