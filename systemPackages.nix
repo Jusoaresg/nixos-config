@@ -3,6 +3,12 @@
 {
   environment.systemPackages = with pkgs; [
 
+	#Color temperature (Blue light)
+	sct
+
+	#Notification
+	dunst
+
 	#Terminal
 	kitty
 
