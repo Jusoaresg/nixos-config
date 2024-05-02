@@ -3,11 +3,9 @@
 {
   environment.systemPackages = with pkgs; [
 
+
 	#Color temperature (Blue light)
 	sct
-
-	#Notification
-	dunst
 
 	#Terminal
 	kitty
@@ -50,6 +48,10 @@
 	go
 
 	gnumake42
+
+	#LSP
+	lua-language-server
+
 
 	#Browser
 	vivaldi
