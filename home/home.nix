@@ -45,7 +45,8 @@
     # ".screenrc".source = dotfiles/screenrc;
     ".config/kitty/kitty.conf".source = ./dotfiles/kitty/kitty.conf;
     ".config/fish".source = ./dotfiles/fish;
-    ".config/i3".source = ./dotfiles/i3;
+    
+    ".config/awesome".source = ./dotfiles/awesome;
     ".tmux.conf".source = ./dotfiles/.tmux.conf;
     ".config/flameshot".source = ./dotfiles/flameshot;
 
