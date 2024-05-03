@@ -47,6 +47,7 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+--beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "kitty"
@@ -171,6 +172,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
         screen  = s,
+        --filter  = function (t) return t.selected or #t:clients() > 0 end,
         filter  = awful.widget.taglist.filter.all,
         buttons = taglist_buttons
     }
@@ -180,6 +182,12 @@ awful.screen.connect_for_each_screen(function(s)
         screen  = s,
         filter  = awful.widget.tasklist.filter.currenttags,
         buttons = tasklist_buttons,
+        layout = {
+            spacing_widget = {
+                forced_width = 5,
+                color = beautiful.bg_normal,
+        },
+        },
     }
 
     -- Create the wibox
