@@ -18,6 +18,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+local lain = require("lain")
+local fainty = require("fainty")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -46,8 +48,12 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+--beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+--
 --beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/theme.lua")
+--
+beautiful.init(gears.filesystem.get_themes_dir() .. "xresources/theme.lua")
+beautiful.useless_gap = 0
 
 -- This is used later as the default terminal and editor to run.
 terminal = "kitty"
@@ -59,8 +65,8 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     --awful.layout.suit.floating,
-    --awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
+    awful.layout.suit.tile,
+    --awful.layout.suit.tile.left,
 }
 -- }}}
 
@@ -169,6 +175,7 @@ awful.screen.connect_for_each_screen(function(s)
                            awful.button({ }, 3, function () awful.layout.inc(-1) end),
                            awful.button({ }, 4, function () awful.layout.inc( 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+    
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
         screen  = s,
@@ -190,6 +197,26 @@ awful.screen.connect_for_each_screen(function(s)
         },
     }
 
+
+--WIDGETS
+local cpu = lain.widget.cpu {
+        settings = function ()
+            widget:set_markup("| CPU: " .. cpu_now.usage.. "% | ")
+    end
+    }    
+
+local memory = lain.widget.mem {
+            settings = function ()
+                widget:set_markup("| RAM " .. mem_now.perc.. "% ")
+        end
+    }
+
+local calendar = fainty.widgets.calendar({
+      fmt = " %a %d %b %H:%M:%S ",
+      timeout = 1,
+      settings = { locale = 'ru_RU.UTF-8' }
+})
+
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, bg = beautiful.bg_normal .. "99"})
 
@@ -204,8 +231,11 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            memory.widget,
+            cpu.widget,
+            calendar,
             wibox.widget.systray(),
-            mytextclock,
+            --mytextclock,
             --s.mylayoutbox,
         },
     }
@@ -231,6 +261,7 @@ globalkeys = gears.table.join(
     require("keys.generalKeys"),
     require("keys.programsKeys"),
     --require("keys.windowKeys"),
+
 
     awful.key(
         {}, "XF86AudioLowerVolume", function()
@@ -314,6 +345,9 @@ clientkeys = gears.table.join(
             c:raise()
         end,
         {description = "toggle fullscreen", group = "client"}),
+
+    awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
+              {description = "move to master", group = "client"}),
 
     awful.key({ modkey,   }, "q",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
@@ -463,7 +497,7 @@ awful.rules.rules = {
 client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
-    -- if not awesome.startup then awful.client.setslave(c) end
+    if not awesome.startup then awful.client.setslave(c) end
 
     if awesome.startup
       and not c.size_hints.user_position
