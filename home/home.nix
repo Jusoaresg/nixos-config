@@ -43,7 +43,7 @@
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
-    ".config/kitty/kitty.conf".source = ./dotfiles/kitty/kitty.conf;
+    ".config/kitty".source = ./dotfiles/kitty;
     ".config/fish".source = ./dotfiles/fish;
     
     ".config/awesome".source = ./dotfiles/awesome;
