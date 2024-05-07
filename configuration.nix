@@ -18,6 +18,10 @@
       inputs.home-manager.nixosModules.default
     ];
 
+    nixpkgs.config.permittedInsecurePackages = [
+      "openssl-1.1.1w"
+      ];
+
     home-manager = {
     	extraSpecialArgs = { inherit inputs;};
 	users = {
