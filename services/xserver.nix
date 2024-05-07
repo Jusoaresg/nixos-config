@@ -14,14 +14,13 @@
 		defaultSession = "none+awesome";
 		};
 
-#  windowManager.i3 = {
-#		enable = true;
-#		extraPackages = with pkgs; [
-#				dmenu
-#				i3status
-#				i3lock
-#			];
-#		};
+  windowManager.xmonad = {
+	enable = true;
+	enableContribAndExtras = true;
+	extraPackages = haskellPackages: [
+		haskellPackages.xmobar
+	];
+	};
 
   windowManager.awesome = {
   	enable = true;

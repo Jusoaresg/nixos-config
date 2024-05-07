@@ -3,17 +3,37 @@
 {
   environment.systemPackages = with pkgs; [
 
+	# XMonad Packages
+	dunst
+	haskellPackages.xmobar
+	dmenu
 
-	#Color temperature (Blue light)
-	sct
+	# Terminal
+	(st.overrideAttrs (oldAttrs: rec {
+	    patches = [
+	      ./home/st/st-alpha-20220206-0.8.5.diff
+	      ./home/st/st-font2-0.8.5.diff
+	      ./home/st/st-scrollback-20210507-4536f46.diff
+	      ./home/st/st-scrollback-mouse-20220127-2c5edf2.diff
+	      ./home/st/st-xresources-signal-reloading-20220407-ef05519.diff
+	      ];
+	    # Using a local file
+	    configFile = writeText "config.def.h" (builtins.readFile ./home/st/config.def.h);
+	    postPatch = "${oldAttrs.postPatch}\n cp ${configFile} config.def.h";
+	  }))
 
-	#Terminal
-	kitty
+	ueberzugpp
+	imagemagick
+	poppler
+	bat
+	wkhtmltopdf-bin
+	ffmpegthumbnailer
+	epub-thumbnailer
 
 	#Shell Utility
 	xclip
 	starship
-	neofetch
+	fastfetch
 	nix-search-cli
 	tmux
 	tmux-sessionizer
@@ -46,17 +66,29 @@
 	gcc
 	lua
 	go
-
 	gnumake42
+
+	# Databases
+	dbeaver
 
 	#LSP
 	lua-language-server
 
+	# Distrobox and apps with GUI
+	distrobox
+	xorg.xhost
+
+	#Color temperature (Blue light)
+	sct
+
+	#Colors
+	pywal
 
 	#Browser
 	vivaldi
 
 	#Gtk config
 	lxappearance
+
   ];
 }
