@@ -11,7 +11,7 @@
   	enable = true;
 	desktopManager = {xterm.enable=false;};
 	displayManager = { 
-		defaultSession = "none+awesome";
+		defaultSession = "none+xmonad";
 		};
 
   windowManager.xmonad = {
@@ -20,15 +20,21 @@
 	extraPackages = haskellPackages: [
 		haskellPackages.xmobar
 	];
+
+	 ghcArgs = [
+		"-hidir /tmp" # place interface files in /tmp, otherwise ghc tries to write them to the nix store
+		"-odir /tmp" # place object files in /tmp, otherwise ghc tries to write them to the nix store
+	];
+
 	};
 
-  windowManager.awesome = {
-  	enable = true;
-	luaModules = with pkgs.luaPackages; [
-		luarocks
-		luadbi-mysql
-		];
-		};
+#  windowManager.awesome = {
+#  	enable = true;
+#	luaModules = with pkgs.luaPackages; [
+#		luarocks
+#		luadbi-mysql
+#		];
+#		};
 	};
 
 
