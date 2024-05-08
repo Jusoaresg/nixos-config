@@ -9,6 +9,8 @@ bind \cd delete-char
 
 alias neofetch 'fastfetch'
 
+alias ngs 'sudo nixos-rebuild switch --flake /etc/nixos#default' 
+
 function fish_greeting
 end
 
