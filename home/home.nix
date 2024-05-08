@@ -43,10 +43,12 @@
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
-    ".config/kitty".source = ./dotfiles/kitty;
+    
+    # XMonad
+    ".config/xmonad".source = ./xmonad;
+
     ".config/fish".source = ./dotfiles/fish;
     
-    ".config/awesome".source = ./dotfiles/awesome;
     ".tmux.conf".source = ./dotfiles/.tmux.conf;
     ".config/flameshot".source = ./dotfiles/flameshot;
 
@@ -55,6 +57,7 @@
 
     #Wallpapers
     "Pictures/wallpapers".source = ./wallpapers;
+
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''

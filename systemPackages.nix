@@ -22,13 +22,6 @@
 	    postPatch = "${oldAttrs.postPatch}\n cp ${configFile} config.def.h";
 	  }))
 
-	ueberzugpp
-	imagemagick
-	poppler
-	bat
-	wkhtmltopdf-bin
-	ffmpegthumbnailer
-	epub-thumbnailer
 
 	#Shell Utility
 	xclip
@@ -38,7 +31,6 @@
 	tmux
 	tmux-sessionizer
 	zoxide
-	yazi
 	unzip
 	wget
 	zathura
@@ -46,6 +38,19 @@
 	httpie
 	jq
 	ani-cli
+
+	# MarkDown Preview on terminal
+	glow
+
+	# Terminal File manager with preview
+	yazi
+	ueberzugpp
+	imagemagick
+	poppler
+	bat
+	wkhtmltopdf-bin
+	ffmpegthumbnailer
+	epub-thumbnailer
 
 	#Utility
 	flameshot # Screenshot
