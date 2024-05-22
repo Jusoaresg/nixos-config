@@ -52,11 +52,19 @@
     ".tmux.conf".source = ./dotfiles/.tmux.conf;
     ".config/flameshot".source = ./dotfiles/flameshot;
 
+    ".gtkrc-2.0".source = ./.gtkrc-2.0;
     ".config/gtk-2.0".source = ./dotfiles/gtk-2.0;
     ".config/gtk-3.0".source = ./dotfiles/gtk-3.0;
 
+    #My global scripts
+    ".config/GlobalScripts".source = ./dotfiles/GlobalScripts;
+
     #Wallpapers
     "Pictures/wallpapers".source = ./wallpapers;
+
+    #.Xresources
+    ".Xresources".source = ./.Xresources;
+
 
 
     # # You can also set the file content immediately.

@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, config, pkgs, callPackage, ... }:
+{ inputs, lib, config, pkgs, callPackage, ... }:
 
 {
   imports =
@@ -22,13 +22,24 @@
       "openssl-1.1.1w"
       ];
 
+    hardware.opengl.enable = true;
+    hardware.opengl.driSupport = true;
+    hardware.opengl.driSupport32Bit = true;
+
+    environment.variables = {
+      LIBGL_ALWAYS_SOFTWARE = "1";
+      };
+
+    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+      "obsidian"
+      ];
+
     home-manager = {
     	extraSpecialArgs = { inherit inputs;};
 	users = {
 		juliano = import ./home/home.nix;
 	};
 	};
-
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -93,7 +104,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+   services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

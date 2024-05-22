@@ -17,6 +17,6 @@ Config { font = "sans 8"
                         ]
         , sepChar = "%"
         , alignSep = "}{"
-        , template = "%StdinReader% | %cpu% | %memory% * %swap% | %enp2s0% }{<fc=#ee9a00>%date%</fc> | %uname% | %SBGR% "
+        , template = "%StdinReader% | %cpu% | %memory% * %swap% | %enp2s0% } <fc=#ee9a00>%date%</fc> { %uname% | %SBGR% "
         --, template = "%StdinReader% | %cpu% | %memory% * %swap% | %eth1% - %eth1% }{<fc=#ee9a00>%date%</fc> | %uname% | %CYVR% "
         }

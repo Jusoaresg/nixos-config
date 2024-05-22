@@ -26,6 +26,7 @@ import XMonad.Util.Run
 import XMonad.Util.EZConfig
 import XMonad.Layout.Decoration
 
+import qualified XMonad.Util.Hacks as Hacks
 import qualified XMonad.Layout.NoBorders as BO
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -94,11 +95,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Move focus to the next window
     , ((modm,               xK_Tab   ), windows W.focusDown)
 
-    -- Move focus to the next window
     , ((modm,               xK_j     ), windows W.focusDown)
 
     -- Move focus to the previous window
     , ((modm,               xK_k     ), windows W.focusUp  )
+
+    , ((modm .|. shiftMask, xK_Tab     ), windows W.focusUp  )
 
     -- Move focus to the master window
     , ((modm,               xK_m     ), windows W.focusMaster  )
@@ -283,6 +285,7 @@ myEventHook = mempty
 myLogHook h = dynamicLogWithPP xmobarPP
     { ppOutput = hPutStrLn h
     , ppTitle = xmobarColor "green" "" . shorten 50
+    --, ppTitle = xmobarColor "green" "" . shorten 50
     }
 
 ------------------------------------------------------------------------
@@ -306,7 +309,7 @@ myStartupHook = do
 main = do
     xmproc <- spawnPipe "xmobar ~/.config/xmonad/xmobarrrc"
 
-    xmonad . ewmhFullscreen $ docks defaults { logHook = myLogHook xmproc }
+    xmonad . ewmhFullscreen . Hacks.javaHack $ docks defaults { logHook = myLogHook xmproc }
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will

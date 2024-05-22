@@ -8,8 +8,13 @@ bind \e\[1\;5B 'commandline -i "\\\"'
 bind \cd delete-char
 
 alias neofetch 'fastfetch'
+alias open 'xdg-open'
 
 alias ngs 'sudo nixos-rebuild switch --flake /etc/nixos#default' 
+
+alias fzfPrev 'fzf --preview "bat --style=numbers --color=always --line-range :500 {}"'
+
+alias pyEnv 'nix-shell ~/.config/GlobalScripts/pythonEnv.nix --run fish'
 
 function fish_greeting
 end
@@ -18,6 +23,7 @@ if status is-interactive
 end
 
 set -gx PATH ~/.npm-packages/bin $PATH
+
 
 set -l foreground DCD7BA normal
 set -l selection 2D4F67 brcyan
