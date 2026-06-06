@@ -29,9 +29,8 @@
     pavucontrol
 
     # Screenshot
-    swappy
-    grim
-    slurp
+    satty
+    grimblast
 
     # Database
     dbeaver-bin
