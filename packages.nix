@@ -64,5 +64,45 @@
     nixfmt
   ];
 
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+
+    shellAliases = {
+      vim = "nvim";
+      vi = "nvim";
+    };
+
+    histSize = 10000;
+    histFile = "$HOME/.zsh_history";
+    setOptions = [
+      "HIST_IGNORE_ALL_DUPS"
+    ];
+
+    ohMyZsh = {
+      enable = true;
+      plugins = [ "git" ];
+    };
+  };
+
+  programs.starship = {
+    enable = true;
+  };
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
+
+  programs.git = {
+    enable = true;
+    config.user = {
+      name = "jusoaresg";
+      email = "julianosgreg@gmail.com";
+    };
+  };
+
   programs.steam.enable = true;
 }
