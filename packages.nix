@@ -22,6 +22,10 @@
 
     # Modeling
     blender
+
+    # Torrent
+    qbittorrent
+
     # Archives
     unzip
 
