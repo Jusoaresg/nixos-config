@@ -26,6 +26,9 @@
     # Torrent
     qbittorrent
 
+    # Videos
+    mpv
+
     # Archives
     unzip
 
