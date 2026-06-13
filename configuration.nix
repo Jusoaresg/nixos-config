@@ -32,6 +32,7 @@
 
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
+  services.chrony.enable = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -56,6 +57,10 @@
 
   # Configure console keymap
   console.keyMap = "br-abnt2";
+
+  environment.sessionVariables = {
+    TZ = "America/Sao_Paulo";
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.defaultUserShell = pkgs.zsh;
