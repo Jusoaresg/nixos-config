@@ -14,9 +14,6 @@
     # Wallpaper
     hyprpaper
 
-    # Neovim
-    vimPlugins.telescope-fzf-native-nvim
-
     # Files
     bemenu
 
