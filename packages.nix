@@ -9,6 +9,7 @@
     ripgrep
     wakatime-cli
     tmux
+    wl-clipboard
 
     # Wallpaper
     hyprpaper
