@@ -20,6 +20,8 @@
     # Browser
     vivaldi
 
+    # Modeling
+    blender
     # Archives
     unzip
 
