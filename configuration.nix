@@ -24,6 +24,17 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.firewall.allowedTCPPorts = [
+    8000
+    8080
+    8081
+    8989
+  ];
+
+  # Virtualisation
+  virtualisation.docker = {
+    enable = true;
+  };
 
   nix.settings.experimental-features = [
     "nix-command"
@@ -70,6 +81,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "docker"
     ];
     packages = with pkgs; [ ];
   };
@@ -83,7 +95,16 @@
   };
 
   programs.hyprland.enable = true;
-  programs.nix-ld.enable = true;
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      freetype
+      libGL
+      libx11
+      libxrandr
+    ];
+  };
+
   programs.tmux = {
     enable = true;
     extraConfig = ''
@@ -131,6 +152,16 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  # Vial
+  services.udev = {
+    packages = with pkgs; [
+      qmk
+      qmk-udev-rules
+      qmk_hid
+      vial
+    ];
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

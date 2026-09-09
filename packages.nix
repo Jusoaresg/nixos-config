@@ -2,6 +2,13 @@
 
 {
   environment.systemPackages = with pkgs; [
+    # AI
+    opencode
+
+    steam-run
+
+    btop
+
     # Terminal
     foot
     wget
@@ -10,6 +17,9 @@
     wakatime-cli
     tmux
     wl-clipboard
+
+    # Terminal
+    xrandr
 
     # Wallpaper
     hyprpaper
@@ -22,6 +32,10 @@
 
     # Modeling
     blender
+    material-maker
+
+    # Engine
+    godot-mono
 
     # Torrent
     qbittorrent
@@ -31,6 +45,7 @@
 
     # Archives
     unzip
+    gzip
 
     # Sound
     pavucontrol
@@ -68,6 +83,19 @@
 
     # Nix
     nixfmt
+
+    # Keyboards
+    vial
+
+    # Games
+    prismlauncher
+
+    # Images
+    gimp
+    aseprite
+
+    # Audio
+    easyeffects
   ];
 
   programs.zsh = {
@@ -111,4 +139,14 @@
   };
 
   programs.steam.enable = true;
+
+  programs.obs-studio = {
+    enable = true;
+
+    plugins = with pkgs.obs-studio-plugins; [
+      obs-pipewire-audio-capture
+      obs-vaapi
+      obs-multi-rtmp
+    ];
+  };
 }
