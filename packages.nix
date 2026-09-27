@@ -1,14 +1,14 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  unstable,
+  halleyPkgs,
+  ...
+}:
 
 {
+  nixpkgs.config.android_sdk.accept_license = true;
   environment.systemPackages = with pkgs; [
-    # AI
-    opencode
-
-    steam-run
-
-    btop
-
     # Terminal
     foot
     wget
@@ -17,15 +17,19 @@
     wakatime-cli
     tmux
     wl-clipboard
+    btop
+
+    # Shell
+    noctalia
+
+    # Wayland Compositor
+    halleyPkgs.halley-unstable
 
     # Terminal
     xrandr
 
     # Wallpaper
     hyprpaper
-
-    # Files
-    bemenu
 
     # Browser
     vivaldi
@@ -36,6 +40,13 @@
 
     # Engine
     godot-mono
+    godot
+
+    # Android
+    android-tools
+    androidenv.androidPkgs.androidsdk 
+    androidenv.androidPkgs.ndk-bundle 
+    jdk17
 
     # Torrent
     qbittorrent
@@ -43,8 +54,12 @@
     # Videos
     mpv
 
+    # Video Edition
+    kdePackages.kdenlive
+
     # Archives
     unzip
+    zip
     gzip
 
     # Sound
@@ -74,8 +89,11 @@
     nodejs
 
     # Dotnet
-    dotnet-sdk
-    dotnet-sdk_10
+    (dotnetCorePackages.combinePackages [
+      dotnetCorePackages.sdk_8_0
+      dotnetCorePackages.sdk_9_0
+      dotnetCorePackages.sdk_10_0
+    ])
 
     # Lua
     lua-language-server
@@ -83,6 +101,11 @@
 
     # Nix
     nixfmt
+
+    # AI
+    unstable.antigravity
+    unstable.antigravity-cli
+    zed
 
     # Keyboards
     vial

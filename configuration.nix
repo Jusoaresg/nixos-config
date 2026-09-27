@@ -28,6 +28,7 @@
     8000
     8080
     8081
+    8181
     8989
   ];
 
@@ -36,10 +37,16 @@
     enable = true;
   };
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings = {
+    trusted-users = [
+      "root"
+      "juliano"
+    ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
 
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
@@ -71,6 +78,10 @@
 
   environment.sessionVariables = {
     TZ = "America/Sao_Paulo";
+
+    # X11 Cursor
+    XCURSOR_THEME = "catppuccin-mocha-mauve-cursors";
+    XCURSOR_SIZE = "20";
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -82,6 +93,8 @@
       "networkmanager"
       "wheel"
       "docker"
+      "video"
+      "input"
     ];
     packages = with pkgs; [ ];
   };
@@ -102,6 +115,11 @@
       libGL
       libx11
       libxrandr
+      zlib
+      icu
+      openssl
+      stdenv.cc.cc.lib
+      curl
     ];
   };
 
@@ -127,6 +145,9 @@
   environment.variables = {
     EDITOR = "nvim";
     SUDO_EDITOR = "nvim";
+
+    DOTNET_ROOT = "${pkgs.dotnetCorePackages.sdk_10_0}/share/dotnet";
+    DOTNET_ROOT_X64 = "${pkgs.dotnetCorePackages.sdk_10_0}/share/dotnet";
   };
 
   services.pipewire = {
