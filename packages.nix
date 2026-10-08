@@ -3,11 +3,29 @@
   pkgs,
   unstable,
   halleyPkgs,
+  inputs,
   ...
 }:
 
+let
+  androidSdk = pkgs.androidenv.androidPkgs.androidsdk;
+in
 {
+  nixpkgs.config.allowUnfree = true;
   nixpkgs.config.android_sdk.accept_license = true;
+
+  systemd.tmpfiles.rules = [
+    "L+ /opt/android-sdk - - - - ${androidSdk}/libexec/android-sdk"
+  ];
+
+  environment.binsh = "${pkgs.bash}/bin/bash";
+  environment.variables = {
+    ANDROID_HOME = "/opt/android-sdk";
+    ANDROID_SDK_ROOT = "/opt/android-sdk";
+    AndroidSdkDirectory = "/opt/android-sdk";
+    JAVA_HOME = "${pkgs.jdk17}";
+  };
+
   environment.systemPackages = with pkgs; [
     # Terminal
     foot
@@ -18,6 +36,7 @@
     tmux
     wl-clipboard
     btop
+    file
 
     # Shell
     noctalia
@@ -33,6 +52,7 @@
 
     # Browser
     vivaldi
+    inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
 
     # Modeling
     blender
@@ -41,18 +61,23 @@
     # Engine
     godot-mono
     godot
+    unityhub
 
     # Android
     android-tools
-    androidenv.androidPkgs.androidsdk 
-    androidenv.androidPkgs.ndk-bundle 
+    androidenv.androidPkgs.androidsdk
+    androidenv.androidPkgs.ndk-bundle
     jdk17
+
+    # KVM
+    unstable.lan-mouse
 
     # Torrent
     qbittorrent
 
     # Videos
     mpv
+    ffmpeg
 
     # Video Edition
     kdePackages.kdenlive
@@ -103,7 +128,7 @@
     nixfmt
 
     # AI
-    unstable.antigravity
+    unstable.antigravity-ide
     unstable.antigravity-cli
     zed
 
@@ -116,9 +141,13 @@
     # Images
     gimp
     aseprite
+    resvg
 
     # Audio
     easyeffects
+
+    # Notification
+    libnotify
   ];
 
   programs.zsh = {
@@ -142,6 +171,12 @@
       enable = true;
       plugins = [ "git" ];
     };
+
+    interactiveShellInit = ''
+      export ANDROID_HOME="/opt/android-sdk"
+      export ANDROID_SDK_ROOT="/opt/android-sdk"
+      export AndroidSdkDirectory="/opt/android-sdk"
+    '';
   };
 
   programs.starship = {

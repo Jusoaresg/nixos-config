@@ -5,6 +5,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./packages.nix
+    ./antigravity-profiles.nix
   ];
 
   # Bootloader.
@@ -25,11 +26,18 @@
   # Enable networking
   networking.networkmanager.enable = true;
   networking.firewall.allowedTCPPorts = [
+    4242
     8000
     8080
     8081
     8181
+    8889
     8989
+    51000
+  ];
+  networking.firewall.allowedUDPPorts = [
+    4242
+    8189
   ];
 
   # Virtualisation
@@ -51,6 +59,17 @@
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
   services.chrony.enable = true;
+
+  services.flatpak.enable = true;
+  services.flatpak.remotes = [
+    {
+      name = "flathub";
+      location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+    }
+  ];
+  services.flatpak.packages = [
+    "flathub:app/com.unity.UnityHub/x86_64/stable"
+  ];
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -111,15 +130,37 @@
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [
-      freetype
-      libGL
-      libx11
-      libxrandr
-      zlib
-      icu
-      openssl
+      # Terminal / curses
+      ncurses
+      ncurses5
+
+      # C/C++ runtimes essenciais
       stdenv.cc.cc.lib
+      glibc
+      zlib
+      openssl
       curl
+      icu
+
+      # Graphics and windows
+      libGL
+      vulkan-loader
+      freetype
+      fontconfig
+
+      # X11 extensions
+      xorg.libX11
+      xorg.libXrandr
+      xorg.libXcursor
+      xorg.libXi
+      xorg.libXext
+      xorg.libXrender
+      xorg.libXtst
+      xorg.libXfixes
+
+      # Audio and utility
+      libpulseaudio
+      alsa-lib
     ];
   };
 
