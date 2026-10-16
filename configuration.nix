@@ -6,6 +6,7 @@
     ./hardware-configuration.nix
     ./packages.nix
     ./antigravity-profiles.nix
+    ./shellApplications.nix
   ];
 
   # Bootloader.
@@ -26,7 +27,9 @@
   # Enable networking
   networking.networkmanager.enable = true;
   networking.firewall.allowedTCPPorts = [
+    25565
     4242
+    4568
     8000
     8080
     8081
@@ -36,6 +39,7 @@
     51000
   ];
   networking.firewall.allowedUDPPorts = [
+    25565
     4242
     8189
   ];
@@ -67,9 +71,7 @@
       location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
     }
   ];
-  services.flatpak.packages = [
-    "flathub:app/com.unity.UnityHub/x86_64/stable"
-  ];
+  services.flatpak.packages = [ ];
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -96,8 +98,6 @@
   console.keyMap = "br-abnt2";
 
   environment.sessionVariables = {
-    TZ = "America/Sao_Paulo";
-
     # X11 Cursor
     XCURSOR_THEME = "catppuccin-mocha-mauve-cursors";
     XCURSOR_SIZE = "20";

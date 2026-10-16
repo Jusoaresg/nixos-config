@@ -61,7 +61,6 @@ in
     # Engine
     godot-mono
     godot
-    unityhub
 
     # Android
     android-tools
@@ -96,6 +95,7 @@ in
 
     # Database
     dbeaver-bin
+    sqlite
 
     # Json
     jq
@@ -130,7 +130,12 @@ in
     # AI
     unstable.antigravity-ide
     unstable.antigravity-cli
+    unstable.antigravity-hub
+    unstable.repomix
+    unstable.opencode
     zed
+
+    universal-ctags
 
     # Keyboards
     vial
