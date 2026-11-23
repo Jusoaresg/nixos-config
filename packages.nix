@@ -80,6 +80,7 @@ in
 
     # Video Edition
     kdePackages.kdenlive
+    davinci-resolve
 
     # Archives
     unzip
