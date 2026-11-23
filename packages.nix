@@ -133,8 +133,10 @@ in
     unstable.antigravity-cli
     unstable.antigravity-hub
     unstable.repomix
-    unstable.opencode
-    zed
+    unstable.codex
+
+    # Github
+    gh
 
     universal-ctags
 
