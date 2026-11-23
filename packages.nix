@@ -150,6 +150,7 @@ in
     resvg
 
     # Audio
+    playerctl
     easyeffects
 
     # Notification
