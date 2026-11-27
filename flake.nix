@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-orca.url = "github:NixOS/nixpkgs/pull/585502/head";
     halley.url = "github:binarylinuxx/halley-flake";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     zen-browser = {
@@ -19,6 +20,7 @@
       self,
       nixpkgs,
       nixpkgs-unstable,
+      nixpkgs-orca,
       halley,
       nix-flatpak,
       zen-browser,
@@ -40,6 +42,12 @@
             };
 
             halleyPkgs = halley.packages.${system};
+
+            orca-ide =
+              (import nixpkgs-orca {
+                inherit system;
+                config.allowUnfree = true;
+              }).orca-ide;
           };
 
           modules = [

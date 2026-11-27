@@ -3,6 +3,7 @@
   pkgs,
   unstable,
   halleyPkgs,
+  orca-ide,
   inputs,
   ...
 }:
@@ -39,7 +40,7 @@ in
     file
 
     # Shell
-    noctalia
+    unstable.noctalia
 
     # Wayland Compositor
     halleyPkgs.halley-unstable
@@ -91,8 +92,8 @@ in
     pavucontrol
 
     # Screenshot
-    satty
-    grimblast
+    # satty
+    # grimblast
 
     # Database
     dbeaver-bin
@@ -129,11 +130,10 @@ in
     nixfmt
 
     # AI
-    unstable.antigravity-ide
     unstable.antigravity-cli
-    unstable.antigravity-hub
     unstable.repomix
     unstable.codex
+    orca-ide
 
     # Github
     gh

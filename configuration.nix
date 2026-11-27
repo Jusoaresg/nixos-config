@@ -40,6 +40,9 @@
     25565
     4242
     4568
+    5000
+    5173
+    6768
     8000
     8080
     8081
@@ -51,6 +54,9 @@
   networking.firewall.allowedUDPPorts = [
     25565
     4242
+    5000
+    5173
+    6768
     8189
   ];
 
@@ -230,6 +236,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  programs.ssh.startAgent = true;
 
   # Vial
   services.udev = {
